@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Online Code Compiler | Internship Task</title>
+        <script src="{% static 'js/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'js/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'ace-builds/src/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'ace-builds/src/ext-language_tools.js' %}" type="text/javascript" charset="utf-8"></script>
+
+        <script src="{% static 'js/my_js.js' %}" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/my_style.css' %}" />
+    </head>
+
+    <body>
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
+		<nav class="navbar navbar-dark bg-dark">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a style="color:#fff;"class="navbar-brand" href="#">Online Compiler</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">MyIDE</a></li>
+            </ul>
+          </div>
+        </nav>
+
+       
+    	<hr>
+        <br><br>
+
+        <div class="container">
+			<div id="topbar">
+				<div class="lang-choose">
+					<select class="form-control" name="lang" id="lang">
+						<option value="C">C </option>
+						<option value="CPP" selected>C++</option>
+						<option value="JAVA">Java </option>
+					</select>
+
+				</div> 
+                <div id="settings">
+                    <div class="theme-choose">
+                        <select class="form-control" name="theme" id="theme">
+                            <option value="Twilight"selected>Twilight</option>
+                            <option value="Light" >Light</option>
+                            <option value="Monokai">Monokai</option>
+                            <option value="Solarised Light">Solarised Light</option>
+                            
+                        </select>
+                    </div> 
+                    <a class="" id="download"> download code</a>
+                </div>
+			</div>
+			
+			<pre id="editor"></pre>
+
+			<div id="editor-statusbar">
+            </div>
+
+
+    		<div class="row">
+    			<div id="showres">
+    				<div style="margin-left:88.4%;"class="run-save-panel">
+	    				<button class="btn btn-success" id="runcode"  data-toggle="tooltip" data-placement="top" title="Compile Code">Compile Code</button>
+	    			</div>
+    			</div>
+    		</div> 
+
+    		<div class="row">
+				<div class="input-container">
+					<textarea id="custom-input" class="input-textarea" placeholder="Write inputs to program."></textarea>
+				</div>
+    		</div> 
+
+			<div class="form-group">
+                 <label for="exampleFormControlTextarea1">Compilation and Output</label>
+                     <textarea class="form-control" id="output" name="outputArea" rows="3"></textarea>
+             </div>
+
+      
+
+    </body>
+</html>
