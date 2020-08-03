@@ -1,11 +1,15 @@
 $(document).ready(function(){
 
+	var inputarea=$("#inputarea");
+	inputarea.hide();
 
+	var inputarea=$("#inputarea");
+	var inputtext=inputarea.val();
 	var language = {}
 
-	language['C'] = '#include <stdio.h>\n\nint main(void) \n{\n	printf("Hello World!\\n");\n	return 0;\n}\n';
-	language['CPP'] = '#include <iostream>\nusing namespace std;\n\nint main()\n{\n     cout << "Hello World!" << endl;\n     return 0;\n}\n';
-	language['JAVA'] = 'class TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
+	language['C'] = '// Online C compiler to run C online.\n// Write C code in this online editor and run it.\n\n\n#include <stdio.h>\n\nint main(void) \n{\n	printf("Hello World!\\n");\n	return 0;\n}\n';
+	language['CPP'] = '// Online C++ compiler to run C++ online.\n// Write C++ code in this online editor and run it.\n\n\n#include <iostream>\nusing namespace std;\n\nint main()\n{\n     cout << "Hello World!" << endl;\n     return 0;\n}\n';
+	language['JAVA'] = '// Online Java compiler to run Java online.\n// Write Java code in this online editor and run it.\n\n\nclass TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
 
 
 	ace.require("ace/ext/language_tools");
@@ -47,10 +51,20 @@ $(document).ready(function(){
 		download(source_code, $("#lang").val());
 
 	});
+	 // on change of state
+	 $('#CheckInput').on('change', function(){
+		if(this.checked) 
+		 {
+			 inputarea.show();
+		 }else{
+			 inputarea.hide();
+		 }
+	 })
 
 	//To get the current contents in the editor
 	function updateContent(){
 		source_code = editor.getValue();
+		inputtext=inputarea.val();
 	}
 
 	
@@ -60,7 +74,9 @@ $(document).ready(function(){
 		var run_data = {
 				source: source_code,
 				lang: selectedLang,
+				input:inputarea.val(),
 		};
+		
 		$.ajax({
 			url: "run/",
 			type: "POST",
@@ -80,7 +96,15 @@ $(document).ready(function(){
 	}
 
 	$("#runcode").click(function(){
-		compileCode();
+		if ($('#CheckInput').is(':checked')) {
+			if(!inputarea.val()){
+				alert("Add Input or uncheck input box");
+			}else{
+				compileCode();	
+			}
+		}else{
+			compileCode();
+		}
 	});
 
 

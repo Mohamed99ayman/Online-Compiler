@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 import json 
 import requests
 import os
+import subprocess
 
 
 def index(request):
@@ -36,20 +37,38 @@ def home(request):
     return render(request,"editorapp/index.html")
 
 
-
-
 def runcode(request):
     if request.is_ajax() and request.POST:
         source = request.POST['source']
+        inputtext=request.POST['input']
         data = {
 			'source': source,
+            'input':inputtext
 		}
+        if input:
+            f=open("input.txt",'w')
+            f.write(inputtext)
+            f.close()
         f = open("code.cpp","w")
         f.write(source)
         f.close()
         os.system("g++ -Werror code.cpp 2>error.txt")
         compilation_error = open('error.txt', 'r').read()
-        data=json.dumps(compilation_error)
-        return HttpResponse(data,content_type='application/json')
+        if not compilation_error:
+            p=subprocess.Popen("./a.out <input.txt >out.txt",shell=True)
+            try:
+                p.wait(10)
+            except subprocess.TimeoutExpired:
+                p.kill()
+                output="Process was terminated as it took longer than 10 seconds"
+                data=json.dumps(output)
+                return HttpResponse(data,content_type='application/json')
+            output=open('out.txt','r').read()
+            data=json.dumps(output)
+            return HttpResponse(data,content_type='application/json')
+
+        else :
+            data=json.dumps(compilation_error)
+            return HttpResponse(data,content_type='application/json')
     else:
         return HttpResponseForbidden()

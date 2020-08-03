@@ -1,4 +1,0 @@
-code.cpp: In function ‘int main()’:
-code.cpp:8:6: error: ‘asasdasda’ was not declared in this scope
-      asasdasda
-      ^~~~~~~~~

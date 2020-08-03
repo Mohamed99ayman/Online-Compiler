@@ -1,9 +1,11 @@
-#include <iostream>
-using namespace std;
+// Online C compiler to run C online.
+// Write C code in this online editor and run it.
 
-int main()
+
+#include <stdio.h>
+
+int main(void) 
 {
-     cout << "Hello World!" << endl;
-     return 0;
-     asasdasda
+	printf("Hello World!\n");
+	return 0;
 }

@@ -64,25 +64,29 @@
             </div>
 
 
+            <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="CheckInput">
+    <label class="form-check-label" for="exampleCheck1"> Show Input </label>
+  </div>
+
+
     		<div class="row">
     			<div id="showres">
-    				<div style="margin-left:88.4%;"class="run-save-panel">
-	    				<button class="btn btn-success" id="runcode"  data-toggle="tooltip" data-placement="top" title="Compile Code">Compile Code</button>
+    				<div style="margin-left:91%;"class="run-save-panel">
+	    				<button class="btn btn-success" id="runcode"  data-toggle="tooltip" data-placement="top" title="Compile Code">Compile and run Code</button>
 	    			</div>
     			</div>
     		</div> 
 
-    		<div class="row">
-				<div class="input-container">
-					<textarea id="custom-input" class="input-textarea" placeholder="Write inputs to program."></textarea>
-				</div>
-    		</div> 
+    		<div class="form-group" id="inputonly">
+                 <label for="exampleFormControlTextarea1">Input</label>
+                     <textarea class="form-control" id="inputarea" name="inputArea" rows="3"></textarea>
+             </div>
 
 			<div class="form-group">
                  <label for="exampleFormControlTextarea1">Compilation and Output</label>
-                     <textarea class="form-control" id="output" name="outputArea" rows="3"></textarea>
+                     <textarea disabled class="form-control" id="output" name="outputArea" rows="5"></textarea>
              </div>
-
       
 
     </body>
