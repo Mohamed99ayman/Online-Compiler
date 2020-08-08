@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Online Code Compiler | Internship Task</title>
+		<title>AOC Online Code Compiler</title>
         <script src="{% static 'js/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
         <script src="{% static 'js/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
         <script src="{% static 'ace-builds/src/ace.js' %}" type="text/javascript" charset="utf-8"></script>
@@ -22,34 +22,33 @@
 		<nav class="navbar navbar-dark bg-dark">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a style="color:#fff;"class="navbar-brand" href="#">Online Compiler</a>
+              <a style="color:#fff;"class="navbar-brand" href="#">AOC Online Compiler</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">MyIDE</a></li>
             </ul>
           </div>
         </nav>
 
-       
-    	<hr>
-        <br><br>
 
         <div class="container">
+        
+        
 			<div id="topbar">
 				<div class="lang-choose">
 					<select class="form-control" name="lang" id="lang">
 						<option value="C">C </option>
 						<option value="CPP" selected>C++</option>
 						<option value="JAVA">Java </option>
+						<option value="Python">Python </option>
 					</select>
 
 				</div> 
                 <div id="settings">
                     <div class="theme-choose">
                         <select class="form-control" name="theme" id="theme">
-                            <option value="Twilight"selected>Twilight</option>
+                        <option value="Monokai"selected>Monokai</option>
+                            <option value="Twilight">Twilight</option>
                             <option value="Light" >Light</option>
-                            <option value="Monokai">Monokai</option>
                             <option value="Solarised Light">Solarised Light</option>
                             
                         </select>
@@ -60,23 +59,31 @@
 			
 			<pre id="editor"></pre>
 
-			<div id="editor-statusbar">
-            </div>
 
 
-            <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="CheckInput">
-    <label class="form-check-label" for="exampleCheck1"> Show Input </label>
-  </div>
+        <table style="width:100%">
 
-
-    		<div class="row">
+  <tr>
+    <td><div class="form-check row">
+        
+    <input type="checkbox" class="form-check-input" id="CheckInput">  Show Input</input>
+    </div></td>
+   
+    <td><div class="row">
     			<div id="showres">
-    				<div style="margin-left:91%;"class="run-save-panel">
+    				<div style="margin-left:75%;"class="run-save-panel">
 	    				<button class="btn btn-success" id="runcode"  data-toggle="tooltip" data-placement="top" title="Compile Code">Compile and run Code</button>
 	    			</div>
     			</div>
-    		</div> 
+    		</div> </td>
+  </tr>
+</table>
+
+            
+
+        
+
+    		
 
     		<div class="form-group" id="inputonly">
                  <label for="exampleFormControlTextarea1">Input</label>
@@ -88,6 +95,9 @@
                      <textarea disabled class="form-control" id="output" name="outputArea" rows="5"></textarea>
              </div>
       
+
+
+
 
     </body>
 </html>

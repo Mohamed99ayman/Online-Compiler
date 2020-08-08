@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 	var inputarea=$("#inputarea");
 	inputarea.hide();
+	var inputlabel=$("#inputonly");
+	inputlabel.hide();
 
 	var inputarea=$("#inputarea");
 	var inputtext=inputarea.val();
@@ -9,13 +11,13 @@ $(document).ready(function(){
 
 	language['C'] = '// Online C compiler to run C online.\n// Write C code in this online editor and run it.\n\n\n#include <stdio.h>\n\nint main(void) \n{\n	printf("Hello World!\\n");\n	return 0;\n}\n';
 	language['CPP'] = '// Online C++ compiler to run C++ online.\n// Write C++ code in this online editor and run it.\n\n\n#include <iostream>\nusing namespace std;\n\nint main()\n{\n     cout << "Hello World!" << endl;\n     return 0;\n}\n';
-	language['JAVA'] = '// Online Java compiler to run Java online.\n// Write Java code in this online editor and run it.\n\n\nclass TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
-
+	language['JAVA'] = '// Online Java compiler to run Java online.\n// Write Java code in this online editor and run it.\n\n\n//Don\'t change class name \nclass TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
+	language['Python']="# Online Python compiler to run Python online.\n# Write Python code in this online editor and run it.\n\n\nprint('Hello World!')"
 
 	ace.require("ace/ext/language_tools");
 	var editor = ace.edit("editor");
 	var selectedLang = "CPP";
-	editor.setTheme("ace/theme/twilight");
+	editor.setTheme("ace/theme/monokai");
 	editor.session.setMode("ace/mode/c_cpp");
 	editor.getSession().setTabSize(5);
 	var source_code = editor.getValue();
@@ -35,7 +37,7 @@ $(document).ready(function(){
 	//To Download the code in the editor
 	function download(content,lang){
 		var e = {
-			"C":"c","CPP":"cpp","JAVA":"java"
+			"C":"c","CPP":"cpp","JAVA":"java","Python":'py'
 		};
 		var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -56,8 +58,12 @@ $(document).ready(function(){
 		if(this.checked) 
 		 {
 			 inputarea.show();
+			inputlabel.show();
+
 		 }else{
 			 inputarea.hide();
+			inputlabel.hide();
+
 		 }
 	 })
 
@@ -71,6 +77,7 @@ $(document).ready(function(){
 	//Compiling the Code
 	function compileCode(){
 		updateContent();
+		$('#output').val('Compiling and running!!!');
 		var run_data = {
 				source: source_code,
 				lang: selectedLang,

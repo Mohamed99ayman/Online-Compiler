@@ -1,11 +1,12 @@
-// Online C compiler to run C online.
-// Write C code in this online editor and run it.
+// Online C++ compiler to run C++ online.
+// Write C++ code in this online editor and run it.
 
 
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-int main(void) 
+int main()
 {
-	printf("Hello World!\n");
-	return 0;
+     cout << "Hello World!" << endl;
+     return 0;
 }

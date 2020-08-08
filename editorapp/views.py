@@ -7,60 +7,59 @@ import json
 import requests
 import os
 import subprocess
+import sys
 
 
-def index(request):
-    if request.method == 'POST':
-        form = SnippetForm(request.POST)
-        if form.is_valid():
-            form.save()
-            
-            f = open("code.cpp", "w")
-           
-            s=json.dumps(form.clean()).rstrip()
-            s=s[10:]
-            s=s[:-2]
-            print(type(s))
-            s = s.replace('\n', ' ').replace('\r', ' ')
-            print(s)
-            f.write(s)
-            f.close()
 
-            return redirect('/')
-    else:
-        form = SnippetForm()
-    return render(request, "editorapp/template.html", {
-        "form": form,
-        "snippets": Snippet.objects.all()
-    })
+compiler={'CPP':'g++','JAVA':'javac','C':'gcc','Python':'python -m py_compile'}
+code_extent={'CPP':'cpp','JAVA':'java','C':'c','Python':'py'}
+outputcomp={'CPP':'./a.out','JAVA':'java TestClass ','C':'./a.out','Python':'python code.py'}
+
 def home(request):
     return render(request,"editorapp/index.html")
 
 
 def runcode(request):
     if request.is_ajax() and request.POST:
+        # get input from request
         source = request.POST['source']
         inputtext=request.POST['input']
+        language=request.POST['lang']
         data = {
 			'source': source,
-            'input':inputtext
+            'input':inputtext,
+            'lang':language
 		}
-        if input:
+        if language=='JAVA' and source.find('class TestClass ')==-1:
+            return HttpResponse(json.dumps("Class name chaged \nRename the class to TestClass"),content_type='application/json')
+        cmd=""
+        # check if there is input
+        if inputtext:
             f=open("input.txt",'w')
             f.write(inputtext)
             f.close()
-        f = open("code.cpp","w")
+            cmd=" <input.txt"
+        
+        # create file to compile
+
+        f = open("code."+code_extent[language],"w")
         f.write(source)
         f.close()
-        os.system("g++ -Werror code.cpp 2>error.txt")
-        compilation_error = open('error.txt', 'r').read()
+        compilation_error=""
+
+        # try compiling the code
+        try:
+            subprocess.check_output(compiler[language]+" code."+code_extent[language], stderr=subprocess.PIPE,shell=True)
+        except subprocess.CalledProcessError as e:
+            compilation_error= e.stderr.decode(sys.getfilesystemencoding())
+
         if not compilation_error:
-            p=subprocess.Popen("./a.out <input.txt >out.txt",shell=True)
+            p=subprocess.Popen(outputcomp[language]+cmd+" >out.txt",shell=True)
             try:
                 p.wait(10)
             except subprocess.TimeoutExpired:
                 p.kill()
-                output="Process was terminated as it took longer than 10 seconds"
+                output="Process was terminated as it took longer than 10 seconds, was your code expecting an input?"
                 data=json.dumps(output)
                 return HttpResponse(data,content_type='application/json')
             output=open('out.txt','r').read()
@@ -72,3 +71,5 @@ def runcode(request):
             return HttpResponse(data,content_type='application/json')
     else:
         return HttpResponseForbidden()
+
+            
