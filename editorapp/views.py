@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseForbidden,HttpResponse
-from .forms import SnippetForm
-from .models import Snippet
 from django.shortcuts import render, redirect
 import json 
-import requests
 import os
 import subprocess
 import sys
