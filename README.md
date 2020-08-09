@@ -13,7 +13,5 @@ pip install -r requirements.txt
 	python manage.py runserver
 
  ## Screenshots ##
-![picture alt](https://github.com/Mohamed99ayman/Online-Compiler/blob/master/screenshots/s1.png)
-
-
+![picture alt](https://github.com/Mohamed99ayman/Online-Compiler/tree/master/screenshot)
 
