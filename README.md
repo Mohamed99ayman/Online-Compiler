@@ -1,6 +1,6 @@
 # AOC Online Compiler
-An online compiler that compiles and runs Java,C++,C,Python code
-editor used : https://github.com/ajaxorg/ace
+An online compiler that compiles and runs Java,C++,C,Python code.  
+Editor: [Ace](https://github.com/ajaxorg/ace)
 
 ## To install 
 ```python
