@@ -7,7 +7,7 @@ Editor: [Ace](https://github.com/ajaxorg/ace)
 pip install -r requirements.txt
 ```
 
-### To run local host server
+### To run on local host
 	git clone https://github.com/Mohamed99ayman/Online-Compiler
 	cd ~/Online-Compiler
 	python manage.py runserver
