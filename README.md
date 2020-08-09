@@ -2,7 +2,7 @@
 An online compiler that compiles and runs Java,C++,C,Python code.  
 Editor: [Ace](https://github.com/ajaxorg/ace)
 
-## To install 
+## To install python libraries
 ```python
 pip install -r requirements.txt
 ```
