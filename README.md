@@ -10,7 +10,7 @@ pip3 install -r requirements.txt
 ### To run on local host
 	git clone https://github.com/Mohamed99ayman/Online-Compiler
 	cd ~/Online-Compiler
-	python manage.py runserver
+	python3 manage.py runserver
 
  ## Screenshots ##
 ![picture alt](https://github.com/Mohamed99ayman/Online-Compiler/blob/master/screenshot/s1.png)
