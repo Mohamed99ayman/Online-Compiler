@@ -4,7 +4,7 @@ Editor: [Ace](https://github.com/ajaxorg/ace)
 
 ## To install python libraries
 ```python
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### To run on local host
