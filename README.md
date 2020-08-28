@@ -18,5 +18,5 @@ pip3 install -r requirements.txt
 ![picture alt](https://github.com/Mohamed99ayman/Online-Compiler/blob/master/screenshot/s1.png)
 
 ## Copyrights ##
-Editor: [Ace](https://github.com/ajaxorg/ace)
+Editor: [Ace](https://github.com/ajaxorg/ace)  
 [Favicon](https://www.freepik.com/free-vector/illustration-gear-doodle-icon_2606116.htm#page=1&query=gear&position=0) is designed by freepik.
