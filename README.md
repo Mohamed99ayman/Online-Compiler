@@ -15,7 +15,7 @@ pip3 install -r requirements.txt
 	python3 manage.py runserver
 
 ## Screenshots ##
-![picture alt](https://github.com/Mohamed99ayman/Online-Compiler/blob/master/screenshot/s1.png)
+![myimage](https://user-images.githubusercontent.com/44615609/91636723-2b458800-ea03-11ea-81fa-c2320c25b952.gif)
 
 ## Copyrights ##
 Editor: [Ace](https://github.com/ajaxorg/ace)  
