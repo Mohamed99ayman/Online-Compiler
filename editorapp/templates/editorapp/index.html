@@ -5,8 +5,21 @@
 
 <head>
   <meta charset="utf-8">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aoc.csed22.com/">
+  <meta property="og:title" content="AOC - Online Compiler">
+  <meta property="og:description" content="Author: Mohamed Ayman">
+  <meta property="og:image" content="https://csed22.com/aoc/assets/Entrance.png">
+  <meta property="og:image:width" content="1526">
+  <meta property="og:image:height" content="792">
+
+  <link rel="canonical" href="https://aoc.csed22.com/">
   <link rel="icon" type="image/png" href="https://csed22.com/aoc/assets/favicon.png">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>AOC Online Compiler</title>
   <script src="{% static 'js/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
   <script src="{% static 'js/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
@@ -18,7 +31,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/my_style.css' %}" />
 </head>
 
-<body>
+<body onload="injectCode()">
   <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
 
   <nav class="navbar navbar-dark bg-dark">
@@ -37,7 +50,7 @@
 
       <table style="width:100%">
         <tr>
-          
+
           <td>
             <div class="lang-choose">
               <select class="form-control" name="lang" id="lang">
@@ -104,6 +117,76 @@
       <label for="exampleFormControlTextarea1">Output</label>
       <textarea disabled class="form-control" id="output" name="outputArea" rows="5"></textarea>
     </div>
+
+    <script>
+
+      // https://www.sitepoint.com/get-url-parameters-with-javascript/
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      function injectCode() {
+        if (urlParams.has('lang') && urlParams.has('code')) {
+
+          const lang = urlParams.get('lang')
+          var code = urlParams.get('code')
+
+          // https://ace.c9.io/#nav=embedding
+          var editor = ace.edit("editor");
+
+          // https://stackoverflow.com/a/23612498
+          var langSelector = document.getElementById("lang");
+          // Create a new 'change' event
+          var event = new Event('change');
+
+          switch (lang) {
+            case "c":
+              select('lang', 'C');
+              editor.session.setMode("ace/mode/c_cpp");
+              break;
+            case "c++":
+            case "cpp":
+              select('lang', 'CPP');
+              editor.session.setMode("ace/mode/c_cpp");
+              break;
+            case "j":
+            case "java":
+              select('lang', 'JAVA');
+              editor.session.setMode("ace/mode/java");
+              break;
+            case "py":
+            case "python":
+              select('lang', 'Python');
+              editor.session.setMode("ace/mode/python");
+              break;
+          }
+
+          // Dispatch it.
+          langSelector.dispatchEvent(event);
+
+          code = code.split('\0').join('\n');
+          editor.session.setValue(code.toString());
+
+        }
+      }
+
+      // https://thisinterestsme.com/change-select-option-javascript/#:~:text=The%20unique%20ID%20of%20our,out%20of%20the%20for%20loop.
+      function select(selectId, optionValToSelect) {
+        //Get the select element by it's unique ID.
+        var selectElement = document.getElementById(selectId);
+        //Get the options.
+        var selectOptions = selectElement.options;
+        //Loop through these options using a for loop.
+        for (var opt, j = 0; opt = selectOptions[j]; j++) {
+          //If the option of value is equal to the option we want to select.
+          if (opt.value == optionValToSelect) {
+            //Select the option and break out of the for loop.
+            selectElement.selectedIndex = j;
+            break;
+          }
+        }
+      }
+
+    </script>
 
 </body>
 
