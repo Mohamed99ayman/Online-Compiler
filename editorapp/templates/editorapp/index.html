@@ -133,6 +133,13 @@
           // https://ace.c9.io/#nav=embedding
           var editor = ace.edit("editor");
 
+          if (urlParams.has('light')) {
+            select('theme', 'Light');
+            editor.setTheme("ace/theme/dawn");
+            document.body.style.color = "#FBFBFB";
+            document.body.style.backgroundColor = "#FBFBFB";
+          }
+
           // https://stackoverflow.com/a/23612498
           var langSelector = document.getElementById("lang");
           // Create a new 'change' event
