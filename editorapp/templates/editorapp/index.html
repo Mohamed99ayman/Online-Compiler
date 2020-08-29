@@ -163,7 +163,7 @@
           // Dispatch it.
           langSelector.dispatchEvent(event);
 
-          code = code.replace('\0', '\n');
+          code = code.split('\0').join('\n');
           editor.session.setValue(code.toString());
 
         }
