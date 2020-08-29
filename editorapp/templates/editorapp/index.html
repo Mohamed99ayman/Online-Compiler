@@ -189,6 +189,8 @@
           if (opt.value == optionValToSelect) {
             //Select the option and break out of the for loop.
             selectElement.selectedIndex = j;
+            if (selectId == 'lang')
+              selectElement.disabled = true;
             break;
           }
         }
