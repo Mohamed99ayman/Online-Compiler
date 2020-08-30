@@ -48,7 +48,7 @@
 
     <div id="topbar">
 
-      <table style="width:100%">
+      <table id="topbar_table" style="width:100%">
         <tr>
 
           <td>
@@ -63,7 +63,7 @@
           </td>
 
           <td>
-            <a class="" id="download"><img src="https://csed22.com/aoc/assets/download.png" width="32" height="32"></a>
+            <a class="" id="download" data-toggle="tooltip" data-placement="top" title="Download Code" ><img src="https://csed22.com/aoc/assets/download.png" width="32" height="32"></a>
           </td>
 
           <td>
@@ -99,7 +99,7 @@
             <div id="showres">
               <div style="text-align: right;" class="run-save-panel">
                 <button class="btn btn-success" id="runcode" data-toggle="tooltip" data-placement="top"
-                  title="Compile Code">Run</button>
+                  title="Run Code">Run</button>
               </div>
             </div>
           </div>
@@ -136,9 +136,9 @@
           if (urlParams.has('light')) {
             select('theme', 'Light');
             editor.setTheme("ace/theme/dawn");
-            document.body.style.color = "#FBFBFB";
             document.body.style.backgroundColor = "#FBFBFB";
             document.getElementById("ide").style.maxWidth = "800px";
+            document.getElementById('topbar_table').rows[0].deleteCell(2);
           }
 
           // https://stackoverflow.com/a/23612498
