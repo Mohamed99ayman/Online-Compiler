@@ -63,7 +63,8 @@
           </td>
 
           <td>
-            <a class="" id="download" data-toggle="tooltip" data-placement="top" title="Download Code" ><img src="https://csed22.com/aoc/assets/download.png" width="32" height="32"></a>
+            <a class="" id="download" data-toggle="tooltip" data-placement="top" title="Download Code"><img
+                src="https://csed22.com/aoc/assets/download.png" width="32" height="32"></a>
           </td>
 
           <td>
@@ -132,6 +133,9 @@
 
           // https://ace.c9.io/#nav=embedding
           var editor = ace.edit("editor");
+          //https://ace.c9.io/#nav=howto
+          //editor.session.setUseWrapMode(true);
+          editor.setOption("wrap", 79);
 
           if (urlParams.has('light')) {
             select('theme', 'Light');
