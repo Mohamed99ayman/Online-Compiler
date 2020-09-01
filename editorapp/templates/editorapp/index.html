@@ -132,6 +132,8 @@
 
           // https://ace.c9.io/#nav=embedding
           var editor = ace.edit("editor");
+          //https://ace.c9.io/#nav=howto
+          editor.session.setUseWrapMode(true);
 
           if (urlParams.has('light')) {
             select('theme', 'Light');
