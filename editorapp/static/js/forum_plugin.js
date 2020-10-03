@@ -49,12 +49,15 @@ function injectPlugInCode() {
                 break;
         }
 
+        //supress warning https://github.com/securingsincity/react-ace/issues/29
+        editor.$blockScrolling = 1;
+
         // Dispatch it.
         langSelector.dispatchEvent(event);
 
         code = code.split('\0').join('\n');
         editor.session.setValue(code.toString());
-
+    
     }
 }
 
